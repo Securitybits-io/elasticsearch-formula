@@ -1,0 +1,30 @@
+#Minimal pillar
+elasticsearch:
+  repo: 7.x
+  version: 7.4.0
+
+#Full pillar
+elasticsearch:
+  repo: 7.x
+  version: 7.4.0
+  hold: True
+  restart: True
+  enable: True
+  config:
+    cluster.name: cluster
+    node.name: node
+    node.master: False
+    node.data: False
+    node.ingest: False
+    path.data: /var/lib/elasticsearch
+    path.logs: /var/log/elasticsearch
+    bootstrap.memory_lock: false
+    network.host: 0.0.0.0
+    http.port: 9200
+    discovery.seed_hosts: ["127.0.0.1"]
+    cluster.initial_master_nodes: ["node-1"]
+    gateway.recover_after_nodes: 3
+    action.destructive_requires_name: true
+    xpack.monitoring.collection.enabled: true
+  jvm:
+    heap_size: 2
